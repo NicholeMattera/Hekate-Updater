@@ -26,13 +26,13 @@ namespace HekateUpdater::Managers {
         public:
             bool isLight = false;
 
-            Color background;
-            Color text;
-            Color modalOverlay;
-            Color focusedBackground;
-            Color focusedText;
-            Color focusedBorderOne;
-            Color focusedBorderTwo;
+            Colour background;
+            Colour text;
+            Colour modalOverlay;
+            Colour focusedBackground;
+            Colour focusedText;
+            Colour focusedBorderOne;
+            Colour focusedBorderTwo;
 
             void updateTheme();
 

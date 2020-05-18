@@ -23,7 +23,7 @@
 #include "Image.hpp"
 
 #define Rect(x, y, w, h) { x, y, w, h }
-#define Color(r, g, b, a) { r, g, b, a }
+#define Colour(r, g, b, a) { r, g, b, a }
 
 #pragma once
 
@@ -35,7 +35,7 @@ namespace HekateUpdater {
         u16 height;
     };
 
-    struct Color {
+    struct Colour {
         u8 red;
         u8 green;
         u8 blue;
@@ -44,8 +44,8 @@ namespace HekateUpdater {
 
     class Draw {
         public:
-            static void pixel(u16 x, u16 y, Color color);
-            static void fill(Rect rect, Color color);
+            static void pixel(u16 x, u16 y, Colour Colour);
+            static void fill(Rect rect, Colour Colour);
             static void image(u16 x, u16 y, std::shared_ptr<Image> image);
 
         private:

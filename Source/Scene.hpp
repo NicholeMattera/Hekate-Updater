@@ -29,7 +29,7 @@
 namespace HekateUpdater {
     class Scene {
         public:
-            Color background = { 0, 0, 0, 255 };
+            Colour background = { 0, 0, 0, 255 };
             std::vector<std::weak_ptr<View>> subviews;
 
             Scene(){};

@@ -29,7 +29,7 @@ namespace HekateUpdater {
     class View {
         public:
             Rect frame = Rect(0, 0, 0, 0);
-            Color background = Color(0, 0, 0, 0);
+            Colour background = Colour(0, 0, 0, 0);
             u8 alpha = 255;
             bool isHidden = false;
             bool clipsToBounds = true;

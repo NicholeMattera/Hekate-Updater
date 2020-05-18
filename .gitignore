@@ -1,8 +1,5 @@
 .vscode
 build
-Swurl/debug
-Swurl/lib
-Swurl/release
 *.elf
 *.nacp
 *.nro

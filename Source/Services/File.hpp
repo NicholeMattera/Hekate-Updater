@@ -17,32 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "../Draw.hpp"
+#include <vector>
 
 #pragma once
 
-namespace HekateUpdater::Managers {
-    class Theme {
+namespace HekateUpdater::Services {
+    class File {
         public:
-            bool isLight = false;
+            static bool exists(std::string path);
+            static std::vector<char> read(std::string path);
+            static void write(std::string path, std::vector<char> data);
+            static void unlink(std::string path);
 
-            Color background;
-            Color text;
-            Color modalOverlay;
-            Color focusedBackground;
-            Color focusedText;
-            Color focusedBorderOne;
-            Color focusedBorderTwo;
-
-            void updateTheme();
-
-            static Theme * Instance();
-
-        private:
-            static inline Theme * _instance = nullptr;
-
-            Theme(){};
-            Theme(Theme const&){};
-        
+            static void createFolder(std::string path);
     };
 }

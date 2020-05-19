@@ -43,10 +43,10 @@ namespace HekateUpdater {
         if (!image->imageLoaded || image->rawImage == nullptr)
             return;
 
-        for (u16 x2 = point.x; x2 < point.x + image->width; x2++) {
-            for (u16 y2 = point.y; y2 < point.y + image->height; y2++) {
-                int pos = ((y2 * image->width) + x2) * 3;
-                Draw::pixel(Point(x2, y2), Colour(image->rawImage[pos], image->rawImage[pos + 1], image->rawImage[pos + 2], 255));
+        for (u16 x = 0; x < image->width; x++) {
+            for (u16 y = 0; y < image->height; y++) {
+                u32 pos = ((y * image->width) + x) * 3;
+                Draw::pixel(Point(x + point.x, y + point.y), Colour(image->rawImage[pos], image->rawImage[pos + 1], image->rawImage[pos + 2], 255));
             }
         }
     }

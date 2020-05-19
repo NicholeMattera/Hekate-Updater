@@ -22,36 +22,37 @@
 
 #include "Image.hpp"
 
-#define Point(x, y) { x, y }
-#define Size(w, h) { w, h }
-#define Rect(x, y, w, h) { x, y, w, h }
-#define Colour(r, g, b, a) { r, g, b, a }
-
 #pragma once
 
 namespace HekateUpdater {
-    struct Point {
-        u16 x;
-        u16 y;
+    class Point {
+        public:
+            u16 x, y;
+            Point() : x(0), y(0) {}
+            Point(u16 x, u16 y) : x(x), y(y) {}
     };
 
-    struct Size {
-        u16 width;
-        u16 height;
+    class Size {
+        public:
+            u16 width, height;
+            Size() : width(0), height(0) {}
+            Size(u16 w, u16 h) : width(w), height(h) {}
     };
 
-    struct Rect {
-        u16 x;
-        u16 y;
-        u16 width;
-        u16 height;
+    class Rect {
+        public:
+            u16 x, y;
+            u16 width, height;
+            Rect() : x(0), y(0), width(0), height(0) {}
+            Rect(Point origin, Size size) : x(origin.x), y(origin.y), width(size.width), height(size.height) {}
+            Rect(u16 x, u16 y, u16 w, u16 h) : x(x), y(y), width(w), height(h) {}
     };
 
-    struct Colour {
-        u8 red;
-        u8 green;
-        u8 blue;
-        u8 alpha;
+    class Colour {
+        public:
+            u8 red, green, blue, alpha;
+            Colour() : red(0), green(0), blue(0), alpha(255) {}
+            Colour(u8 r, u8 g, u8 b, u8 a) : red(r), green(g), blue(b), alpha(a) {}
     };
 
     class Draw {

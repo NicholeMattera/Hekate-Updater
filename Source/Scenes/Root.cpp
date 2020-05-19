@@ -25,18 +25,15 @@
 namespace HekateUpdater::Scenes {
     Root::Root() {
         auto theme = Managers::Theme::Instance();
-
         this->background = theme->background;
-        this->icon = std::make_unique<Image>("romfs:/images/0_icon.png");
+
+        this->_header = std::make_shared<Views::Header>(Point(0, 0), std::string("Hekate Updater"), true);
+        this->addSubView(this->_header);
     }
     
     void Root::buttonsDown(u32 buttons) {
         if (buttons != 0) {
             Application::SwitchScene(nullptr);
         }
-    }
-
-    void Root::render(Rect rect) {
-        Draw::image(Point(0, 0), this->icon);
     }
 }

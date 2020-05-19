@@ -18,3 +18,26 @@
  */
 
 #include "Header.hpp"
+#include "../Managers/Theme.hpp"
+
+namespace HekateUpdater::Views {
+    Header::Header(Point origin, std::string title, bool showIcon) : View() {
+        this->frame = Rect(origin.x, origin.y, 1280, 88);
+        this->_showIcon = showIcon;
+        this->_title = title;
+
+        if (this->_showIcon)
+            this->_icon = std::make_unique<Image>("romfs:/images/0_icon.png");
+    }
+
+    void Header::render(Rect rect) {
+        auto theme = Managers::Theme::Instance();
+
+        if (this->_showIcon)
+            Draw::image(Point(rect.x + 74, rect.y + 29), this->_icon);
+
+        // TODO: Render title.
+
+        Draw::fill(Rect(rect.x + 30, rect.y + 87, 1220, 1), theme->text);
+    }
+}

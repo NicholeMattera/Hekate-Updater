@@ -17,15 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include "../Draw.hpp"
+#include "../Image.hpp"
 #include "../View.hpp"
+#include <string>
 
 #pragma once
 
 namespace HekateUpdater::Views {
     class Header : public View {
         public:
+            Header(Point origin, std::string title, bool showIcon);
+
+            void render(Rect rect);
 
         private:
-        
+            std::shared_ptr<Image> _icon;
+            bool _showIcon;
+            std::string _title;
     };
 }

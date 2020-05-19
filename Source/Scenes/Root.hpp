@@ -20,18 +20,18 @@
 #include <memory>
 
 #include "../Scene.hpp"
-#include "../Image.hpp"
+#include "../Views/Header.hpp"
 
 #pragma once
 
 namespace HekateUpdater::Scenes {
     class Root : public Scene {
         public:
-            std::shared_ptr<Image> icon;
-
             Root();
 
             void buttonsDown(u32 buttons);
-            void render(Rect rect);
+
+        private:
+            std::shared_ptr<Views::Header> _header;
     };
 }

@@ -20,6 +20,7 @@
 #include <memory>
 
 #include "../Scene.hpp"
+#include "../Views/Footer.hpp"
 #include "../Views/Header.hpp"
 
 #pragma once
@@ -33,5 +34,6 @@ namespace HekateUpdater::Scenes {
 
         private:
             std::shared_ptr<Views::Header> _header;
+            std::shared_ptr<Views::Footer> _footer;
     };
 }

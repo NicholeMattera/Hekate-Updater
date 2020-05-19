@@ -18,3 +18,20 @@
  */
 
 #include "Footer.hpp"
+#include "../Managers/Theme.hpp"
+
+namespace HekateUpdater::Views {
+    Footer::Footer(Point origin) : View() {
+        this->frame = Rect(origin.x, origin.y, 1280, 73);
+    }
+
+    void Footer::render(Rect rect) {
+        auto theme = Managers::Theme::Instance();
+
+        Draw::fill(Rect(rect.x + 30, rect.y, 1220, 1), theme->text);
+
+        // TODO: Render controller icon.
+
+        // TODO: Render buttons.
+    }
+}

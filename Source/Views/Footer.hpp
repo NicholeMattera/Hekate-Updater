@@ -24,6 +24,10 @@
 namespace HekateUpdater::Views {
     class Footer : public View {
         public:
+        public:
+            Footer(Point origin);
+
+            void render(Rect rect);
 
         private:
         

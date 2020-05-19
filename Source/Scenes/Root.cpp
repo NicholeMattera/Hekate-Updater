@@ -29,6 +29,9 @@ namespace HekateUpdater::Scenes {
 
         this->_header = std::make_shared<Views::Header>(Point(0, 0), std::string("Hekate Updater"), true);
         this->addSubView(this->_header);
+
+        this->_footer = std::make_shared<Views::Footer>(Point(0, 647));
+        this->addSubView(this->_footer);
     }
     
     void Root::buttonsDown(u32 buttons) {

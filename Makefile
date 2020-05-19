@@ -45,7 +45,7 @@ ROMFS		:=	RomFS
 
 APP_TITLE	:=	Hekate Updater
 APP_AUTHOR	:=	Nichole Mattera
-APP_VERSION	:=	1.0.0
+APP_VERSION	:=	4.0.0
 
 #---------------------------------------------------------------------------------
 # options for code generation

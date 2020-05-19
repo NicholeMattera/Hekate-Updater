@@ -34,9 +34,9 @@ namespace HekateUpdater::Managers {
         ColorSetId theme;
         setsysGetColorSetId(&theme);
 
-        this->modalOverlay = Colour(18, 27, 36, 229);
-        this->focusedBorderOne = Colour(0, 255, 196, 255);
-        this->focusedBorderTwo = Colour(22, 146, 197, 255);
+        this->modalOverlay = Colour(45, 45, 45, 204);
+        this->focusedBorderOne = Colour(50, 155, 200, 255);
+        this->focusedBorderTwo = Colour(145, 255, 255, 255);
 
         if (theme == ColorSetId_Light) {
             this->isLight = true;
@@ -48,8 +48,8 @@ namespace HekateUpdater::Managers {
             this->isLight = false;
             this->background = Colour(45, 45, 45, 255);
             this->text = Colour(255, 255, 255, 255);
-            this->focusedBackground = Colour(31, 34, 39, 255);
-            this->focusedText = Colour(0, 255, 196, 255);
+            this->focusedBackground = Colour(33, 34, 40, 255);
+            this->focusedText = Colour(0, 255, 200, 255);
         }
     }
 }

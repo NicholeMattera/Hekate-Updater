@@ -20,14 +20,22 @@
 #include "Scene.hpp"
 
 namespace HekateUpdater {
+    void Scene::tick() {
+        for (auto const& view : subviews) {
+            if (auto viewTemp = view.lock()) {
+                viewTemp->tick();
+            }
+        }
+    }
+
     void Scene::render(Rect rect) {
         for (auto const& view : subviews) {
             if (auto viewTemp = view.lock()) {
                 if (viewTemp->isHidden)
                     continue;
 
-                Rect subviewFrame = viewTemp->frame;
-                // Models::ViewRender subViewRender = view->render({ rect.x + subviewFrame.x, rect.y + subviewFrame.y, subviewFrame.w, subviewFrame.h });
+                auto subviewFrame = viewTemp->frame;
+
                 viewTemp->render(
                     Rect(
                         (u16) (rect.x + subviewFrame.x),
@@ -36,7 +44,6 @@ namespace HekateUpdater {
                         subviewFrame.height
                     )
                 );
-                // SDL_RenderCopy(Application::renderer, subViewRender.texture, NULL, &subViewRender.bounds);
             }
         }
     }

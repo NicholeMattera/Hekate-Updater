@@ -20,64 +20,36 @@
 #include "View.hpp"
 
 namespace HekateUpdater {
+    void View::tick() {
+        for (auto const& view : subviews) {
+            if (auto viewTemp = view.lock()) {
+                viewTemp->tick();
+            }
+        }
+    }
+
     void View::render(Rect rect) {
-        // if (background.a != 0) {
-        //     SDL_SetRenderDrawColor(Application::renderer, background.r, background.g, background.b, background.a);
-        //     SDL_RenderFillRect(Application::renderer, &rect);
-        // }
+        if (background.alpha != 0) {
+            Draw::fill(rect, background);
+        }
 
-        // Models::ViewRender subViewRenders[subviews.size()];
-        // int i = 0;
-        // for (auto const& view : subviews) {
-        //     if (!view->isHidden) {
-        //         auto subviewFrame = view->frame;
-        //         subViewRenders[i] = view->render({ rect.x + subviewFrame.x, rect.y + subviewFrame.y, subviewFrame.w, subviewFrame.h });
-        //         if (!requiresRendering && subViewRenders[i].requiredRendering) {
-        //             requiresRendering = true;
-        //         }
-        //     }
-        //     i++;
-        // }
+        for (auto const& view : subviews) {
+            if (auto viewTemp = view.lock()) {
+                if (viewTemp->isHidden)
+                    continue;
 
-        // SDL_Rect bounds = { 0, 0, 0, 0 };
-        // if (clipsToBounds) {
-        //     bounds = rect;
-        // } else {
-        //     SDL_GetWindowSize(Application::window, &bounds.w, &bounds.h);
-        // }
+                auto subviewFrame = viewTemp->frame;
 
-        // onTick(rect);
-
-        // bool requiredRendering = requiresRendering;
-        // if (requiresRendering) {
-        //     requiresRendering = false;
-
-        //     if (_texture == NULL) {
-        //         _texture = SDL_CreateTexture(Application::renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, bounds.w, bounds.h);
-        //         SDL_SetTextureBlendMode(_texture, SDL_BLENDMODE_BLEND);
-        //     }
-
-        //     SDL_SetRenderTarget(Application::renderer, _texture);
-        //     SDL_SetRenderDrawColor(Application::renderer, 0, 0, 0, 0);
-        //     SDL_RenderClear(Application::renderer);
-
-        //     if (clipsToBounds) {
-        //         onRender({ 0, 0, rect.w, rect.h });
-        //     } else {
-        //         onRender(rect);
-        //     }
-
-        //     for (i = 0; i < (int) subviews.size(); i++) {
-        //         if (subViewRenders[i].texture != NULL) {
-        //             SDL_RenderCopy(Application::renderer, subViewRenders[i].texture, NULL, &subViewRenders[i].bounds);
-        //         }
-        //     }
-
-        //     SDL_SetRenderTarget(Application::renderer, NULL);
-        // }
-
-        // SDL_SetTextureAlphaMod(_texture, alpha);
-        // return { _texture, (clipsToBounds) ? frame : bounds, requiredRendering };
+                viewTemp->render(
+                    Rect(
+                        (u16) (rect.x + subviewFrame.x),
+                        (u16) (rect.y + subviewFrame.y),
+                        subviewFrame.width,
+                        subviewFrame.height
+                    )
+                );
+            }
+        }
     }
 
     void View::addSubView(std::shared_ptr<View> view) {

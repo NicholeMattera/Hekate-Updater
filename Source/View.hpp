@@ -30,26 +30,11 @@ namespace HekateUpdater {
         public:
             Rect frame = Rect(0, 0, 0, 0);
             Colour background = Colour(0, 0, 0, 0);
-            u8 alpha = 255;
             bool isHidden = false;
-            bool clipsToBounds = true;
-            bool requiresRendering = true;
 
             View(){};
-            virtual void onTick(Rect rect){};
-            virtual void onRender(Rect rect){};
-            void render(Rect rect);
-
-            /* Controls */
-            bool isFocusable = false;
-            bool hasFocus = false;
-            std::weak_ptr<View> focusedSubview = std::weak_ptr<View>();
-
-            /* Touch Controls */
-            bool isTouchable = false;
-            virtual void touchStarted(){};
-            virtual void touchMoved(){};
-            virtual void touchEnded(){};
+            virtual void tick();
+            virtual void render(Rect rect);
 
             /* View Hierarchy */
             std::vector<std::weak_ptr<View>> subviews;

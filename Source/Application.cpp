@@ -55,8 +55,8 @@ namespace HekateUpdater {
             memset(Application::CurrentFramebuffer, 0, Application::Stride * 720);
 
             if (Application::_CurrentScene) {
+                Application::_CurrentScene->tick();
                 this->_render();
-                Application::_CurrentScene->tick(Rect(0, 0, 1280, 720));
             } else {
                 break;
             }

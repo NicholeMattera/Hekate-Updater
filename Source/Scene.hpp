@@ -38,7 +38,7 @@ namespace HekateUpdater {
             virtual void buttonsDown(u32 buttons){};
             virtual void buttonsUp(u32 buttons){};
             
-            virtual void tick(Rect rect){};
+            virtual void tick();
             virtual void render(Rect rect);
 
             void addSubView(std::shared_ptr<View> view);

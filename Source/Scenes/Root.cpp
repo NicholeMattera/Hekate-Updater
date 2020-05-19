@@ -27,7 +27,7 @@ namespace HekateUpdater::Scenes {
         auto theme = Managers::Theme::Instance();
 
         this->background = theme->background;
-        // this->icon = std::make_unique<Image>("romfs:/icon.png");
+        this->icon = std::make_unique<Image>("romfs:/images/0_icon.png");
     }
     
     void Root::buttonsDown(u32 buttons) {
@@ -37,6 +37,6 @@ namespace HekateUpdater::Scenes {
     }
 
     void Root::render(Rect rect) {
-        // Draw::image(0, 0, this->icon);
+        Draw::image(Point(0, 0), this->icon);
     }
 }

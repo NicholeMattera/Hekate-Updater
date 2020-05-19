@@ -22,12 +22,24 @@
 
 #include "Image.hpp"
 
+#define Point(x, y) { x, y }
+#define Size(w, h) { w, h }
 #define Rect(x, y, w, h) { x, y, w, h }
 #define Colour(r, g, b, a) { r, g, b, a }
 
 #pragma once
 
 namespace HekateUpdater {
+    struct Point {
+        u16 x;
+        u16 y;
+    };
+
+    struct Size {
+        u16 width;
+        u16 height;
+    };
+
     struct Rect {
         u16 x;
         u16 y;
@@ -44,9 +56,9 @@ namespace HekateUpdater {
 
     class Draw {
         public:
-            static void pixel(u16 x, u16 y, Colour Colour);
+            static void pixel(Point point, Colour Colour);
             static void fill(Rect rect, Colour Colour);
-            static void image(u16 x, u16 y, std::shared_ptr<Image> image);
+            static void image(Point point, std::shared_ptr<Image> image);
 
         private:
             static u8 _blend(u32 source, u32 destination, u8 alpha);

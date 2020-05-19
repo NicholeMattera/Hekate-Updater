@@ -65,7 +65,7 @@ namespace HekateUpdater::Services {
 
     void File::unlink(std::string path) {
         if (File::exists(path)) {
-            remove(path.c_str()) == 0;
+            remove(path.c_str());
         }
     }
 

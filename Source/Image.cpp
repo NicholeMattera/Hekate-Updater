@@ -18,17 +18,14 @@
  */
 
 #include <cstring>
-#include <fstream>
-#include <png.h>
-#include <sstream>
-#include <vector>
-
 #include "Image.hpp"
+#include <png.h>
+#include "Services/File.hpp"
 
 namespace HekateUpdater {
-    Image::Image(std::string filePath) {
-        std::string file = this->_readFile(filePath);
-        this->imageLoaded = this->_readPNG(file);
+    Image::Image(std::string path) {
+        auto data = Services::File::read(path);
+        this->imageLoaded = this->_readPNG(data);
     }
 
     Image::~Image() {
@@ -37,20 +34,13 @@ namespace HekateUpdater {
         }
     }
 
-    std::string Image::_readFile(std::string filePath) {
-        std::ifstream file(filePath);
-        std::ostringstream ss;
-        ss << file.rdbuf();
-        return ss.str();
-    }
-
-    bool Image::_readPNG(std::string file) {
+    bool Image::_readPNG(std::vector<char> file) {
         png_image image;
 
         memset(&image, 0, sizeof(image));
         image.version = PNG_IMAGE_VERSION;
 
-        if (png_image_begin_read_from_memory(&image, file.c_str(), file.length()) == 0) {
+        if (png_image_begin_read_from_memory(&image, &file[0], file.size()) == 0) {
             return false;
         }
 

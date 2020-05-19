@@ -40,9 +40,8 @@ void userAppInit(void) {
         nxlinkStdio();
     #endif
 
-    // res = nifmInitialize(NifmServiceType_User);
-    // if (R_FAILED(res))
-    //     fatalThrow(res);
+    if (R_FAILED(nifmInitialize(NifmServiceType_User)))
+        fatalThrow(0x9003);
 
     if (curl_global_init(CURL_GLOBAL_ALL) != CURLE_OK)
         fatalThrow(0x9004);
@@ -50,16 +49,15 @@ void userAppInit(void) {
     if (R_FAILED(romfsInit()))
         fatalThrow(0x9005);
 
-    // rc = plInitialize();
-    // if (R_FAILED(res))
-    //     fatalThrow(res);
+    if (R_FAILED(plInitialize(PlServiceType_User)))
+        fatalThrow(0x9006);
 }
 
 void userAppExit(void) {
-    // plExit();
+    plExit();
     romfsExit();
     curl_global_cleanup();
-    // nifmExit();
+    nifmExit();
     socketExit();
     setsysExit();
 }

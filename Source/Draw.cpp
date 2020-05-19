@@ -21,8 +21,8 @@
 #include "Draw.hpp"
 
 namespace HekateUpdater {
-    void Draw::pixel(u16 x, u16 y, Colour colour) {
-        u32 position = y * Application::Stride + x * sizeof(u32);
+    void Draw::pixel(Point point, Colour colour) {
+        u32 position = point.y * Application::Stride + point.x * sizeof(u32);
         u8 * framebuffer = Application::CurrentFramebuffer;
 
         framebuffer[position] = Draw::_blend(framebuffer[position], colour.red, colour.alpha);
@@ -34,19 +34,19 @@ namespace HekateUpdater {
     void Draw::fill(Rect rect, Colour colour) {
         for (u16 x = rect.x; x < rect.x + rect.width; x++) {
             for (u16 y = rect.y; y < rect.y + rect.height; y++) {
-                Draw::pixel(x, y, colour);
+                Draw::pixel(Point(x, y), colour);
             }
         }
     }
 
-    void Draw::image(u16 x, u16 y, std::shared_ptr<Image> image) {
+    void Draw::image(Point point, std::shared_ptr<Image> image) {
         if (!image->imageLoaded || image->rawImage == nullptr)
             return;
 
-        for (u16 x2 = x; x2 < x + image->width; x2++) {
-            for (u16 y2 = y; y2 < y + image->height; y2++) {
+        for (u16 x2 = point.x; x2 < point.x + image->width; x2++) {
+            for (u16 y2 = point.y; y2 < point.y + image->height; y2++) {
                 int pos = ((y2 * image->width) + x2) * 3;
-                Draw::pixel(x2, y2, Colour(image->rawImage[pos], image->rawImage[pos + 1], image->rawImage[pos + 2], 255));
+                Draw::pixel(Point(x2, y2), Colour(image->rawImage[pos], image->rawImage[pos + 1], image->rawImage[pos + 2], 255));
             }
         }
     }

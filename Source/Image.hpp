@@ -19,6 +19,7 @@
 
 #include <string>
 #include <switch.h> 
+#include <vector>
 
 #pragma once
 
@@ -30,12 +31,11 @@ namespace HekateUpdater {
             u16 width = 0;
             u16 height = 0;
 
-            Image(std::string filePath);
+            Image(std::string path);
             ~Image();
 
         private:
-            std::string _readFile(std::string filePath);
-            bool _readPNG(std::string file);
+            bool _readPNG(std::vector<char> file);
     };
 }
 

@@ -39,7 +39,8 @@ include $(DEVKITPRO)/libnx/switch_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	HekateUpdater
 BUILD		:=	build
-SOURCES		:=	Source Source/Managers Source/Scenes Source/Views
+SOURCES		:=	Source Source/Managers Source/Scenes Source/Services Source/Views
+INCLUDES	:=	Libs
 ROMFS		:=	RomFS
 
 APP_TITLE	:=	Hekate Updater

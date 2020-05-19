@@ -38,4 +38,3 @@ namespace HekateUpdater {
             bool _readPNG(std::vector<char> file);
     };
 }
-

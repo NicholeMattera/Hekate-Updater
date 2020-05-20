@@ -126,10 +126,6 @@ namespace HekateUpdater {
             }
         }
 
-        // auto glpyhImage = std::make_shared<Image>(glyphBmp);
-        // printf("Draw Glyph - %d %d\n", x, y);
-        // Draw::image(Point(x, y), glpyhImage);
-
         std::free(glyphBmp);
     }
 }

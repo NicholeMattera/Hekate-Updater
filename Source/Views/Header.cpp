@@ -33,10 +33,12 @@ namespace HekateUpdater::Views {
     void Header::render(Rect rect) {
         auto theme = Managers::Theme::Instance();
 
-        if (this->_showIcon)
-            Draw::image(Point(rect.x + 74, rect.y + 29), this->_icon);
-
-        // TODO: Render title.
+        if (this->_showIcon) {
+            Draw::image(Point(rect.x + 75, rect.y + 29), this->_icon);
+            Draw::text(Point(rect.x + 130, rect.y + 62), this->_title, 28, theme->text);
+        } else {
+            Draw::text(Point(rect.x + 74, rect.y + 62), this->_title, 28, theme->text);
+        }
 
         Draw::fill(Rect(rect.x + 30, rect.y + 87, 1220, 1), theme->text);
     }

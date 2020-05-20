@@ -17,26 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "../Application.hpp"
-#include "../Draw.hpp"
-#include "../Managers/Theme.hpp"
-#include "Root.hpp"
+#include <stb_truetype.h>
+#include <switch.h>
 
-namespace HekateUpdater::Scenes {
-    Root::Root() {
-        auto theme = Managers::Theme::Instance();
-        this->background = theme->background;
+#pragma once
 
-        this->_header = std::make_shared<Views::Header>(Point(0, 0), "Hekate Updater", true);
-        this->addSubView(this->_header);
+namespace HekateUpdater::Managers {
+    class Font {
+        public:
+            static Font * Instance();
 
-        this->_footer = std::make_shared<Views::Footer>(Point(0, 647));
-        this->addSubView(this->_footer);
-    }
-    
-    void Root::buttonsDown(u32 buttons) {
-        if (buttons != 0) {
-            Application::SwitchScene(nullptr);
-        }
-    }
+            stbtt_fontinfo * forGlyph(u32 character);
+
+        private:
+            static inline Font * _instance = nullptr;
+
+            stbtt_fontinfo _stdFont;
+            stbtt_fontinfo _extFont;
+
+            Font();
+            Font(Font const&){};
+        
+    };
 }

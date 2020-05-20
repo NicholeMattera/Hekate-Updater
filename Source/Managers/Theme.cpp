@@ -18,7 +18,6 @@
  */
 
 #include <switch.h>
-
 #include "Theme.hpp"
 
 namespace HekateUpdater::Managers {

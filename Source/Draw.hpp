@@ -17,10 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <memory>
-#include <switch.h>
-
 #include "Image.hpp"
+#include "Managers/Font.hpp"
+#include <memory>
+#include <string>
+#include <switch.h>
 
 #pragma once
 
@@ -60,8 +61,10 @@ namespace HekateUpdater {
             static void pixel(Point point, Colour Colour);
             static void fill(Rect rect, Colour Colour);
             static void image(Point point, std::shared_ptr<Image> image);
+            static void text(Point point, std::string text, float size, Colour colour);
 
         private:
             static u8 _blend(u32 source, u32 destination, u8 alpha);
+            static void _glyph(u32 character, u32 x, u32 y, Colour color, stbtt_fontinfo * font, float size);
     };
 }

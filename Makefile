@@ -38,14 +38,14 @@ include $(DEVKITPRO)/libnx/switch_rules
 #   NACP building is skipped as well.
 #---------------------------------------------------------------------------------
 TARGET		:=	HekateUpdater
-BUILD		:=	build
+BUILD		:=	Build
 SOURCES		:=	Source Source/Managers Source/Scenes Source/Services Source/Views
 INCLUDES	:=	Libs
 ROMFS		:=	RomFS
 
 APP_TITLE	:=	Hekate Updater
 APP_AUTHOR	:=	Nichole Mattera
-APP_VERSION	:=	4.0.0
+APP_VERSION	:=	1.0.0
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -165,6 +165,8 @@ all: $(BUILD)
 
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
+	@$(MAKE) -C $(CURDIR)/Payload -f $(CURDIR)/Payload/Makefile
+	@cp $(CURDIR)/Payload/Output/hekate_updater_rcm.bin $(CURDIR)/RomFS/hekate_updater_rcm.bin
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 #---------------------------------------------------------------------------------

@@ -1,6 +1,9 @@
 .vscode
 .DS_Store
-build
+Build
+Payload/Build
+Payload/Output
+RomFS/hekate_updater_rcm.bin
 *.elf
 *.nacp
 *.nro
